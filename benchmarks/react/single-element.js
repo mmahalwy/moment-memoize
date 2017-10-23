@@ -1,4 +1,5 @@
 const React = require('react');
+const ReactDOM = require('react-dom/server');
 const Benchmark = require('benchmark');
 const benchmarks = require('beautify-benchmark');
 const moment = require('moment');
@@ -21,21 +22,21 @@ const setup = require('../../setup');
 
   suite
     .add('moment Single Element', function() {
-      const wrapper = (
+      ReactDOM.renderToString(
         <DisplayDateComponent
           from={1318781876406}
           to={1318781886406}
           momentType={moment}
-        />
+        />,
       );
     })
     .add('momentMemoize Single Element', function() {
-      const wrapper = (
+      ReactDOM.renderToString(
         <DisplayDateComponent
           from={1318781876406}
           to={1318781886406}
           momentType={momentMemoize}
-        />
+        />,
       );
     })
     // add listeners
@@ -66,21 +67,21 @@ const setup = require('../../setup');
 
   suite
     .add('moment Single Element', function() {
-      const wrapper = (
+      ReactDOM.renderToString(
         <DisplayDateComponent
           from={1318781876406}
           to={1318781886406}
           momentType={moment}
-        />
+        />,
       );
     })
     .add('momentMemoize Single Element', function() {
-      const wrapper = (
+      ReactDOM.renderToString(
         <DisplayDateComponent
           from={1318781876406}
           to={1318781886406}
           momentType={momentMemoize}
-        />
+        />,
       );
     })
     // add listeners
@@ -108,19 +109,19 @@ const setup = require('../../setup');
 
   suite
     .add('moment Single Element', function() {
-      const wrapper = (
+      ReactDOM.renderToString(
         <DisplayDateComponent
           from={moment(1318781876406).format('LLLL')}
           to={moment(1318781886406).format('LLLL')}
-        />
+        />,
       );
     })
     .add('momentMemoize Single Element', function() {
-      const wrapper = (
+      ReactDOM.renderToString(
         <DisplayDateComponent
           from={momentMemoize(1318781876406).format('LLLL')}
           to={momentMemoize(1318781886406).format('LLLL')}
-        />
+        />,
       );
     })
     // add listeners

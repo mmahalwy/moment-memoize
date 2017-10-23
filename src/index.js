@@ -14,6 +14,7 @@ function memoizeObjectMethods(initial, from) {
 // TODO: no args needs to be dynamic!
 const momentMemoize = memoize(moment, { length: false });
 
+// Memoize all static methods
 memoizeObjectMethods(momentMemoize, moment);
 
 module.exports = momentMemoize;

@@ -180,6 +180,14 @@ const CHAINING_METHOD_TESTS = [
     method: 'minute',
     args: [],
   },
+  {
+    method: 'format',
+    args: ['LLLL'],
+  },
+  {
+    method: 'format',
+    args: ['HH:mm'],
+  },
 ];
 
 exports.MOMENT_A = MOMENT_A;

@@ -2,7 +2,7 @@ const Benchmark = require('benchmark');
 const benchmarks = require('beautify-benchmark');
 const moment = require('moment');
 const momentMemoize = require('../../src/index');
-const setup = require('../setup');
+const setup = require('../../setup');
 
 setup.STATIC_METHODS_TESTS.forEach(propertyTest => {
   const suite = new Benchmark.Suite(propertyTest.method);
@@ -24,7 +24,7 @@ setup.STATIC_METHODS_TESTS.forEach(propertyTest => {
     .run();
 });
 
-const suite = new Benchmark.Suite(propertyTest.method);
+const suite = new Benchmark.Suite();
 
 suite
   .add(`moment overall`, function() {

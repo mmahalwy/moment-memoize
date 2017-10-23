@@ -1,14 +1,17 @@
 const React = require('react');
+const ReactDOM = require('react-dom/server');
 const Benchmark = require('benchmark');
 const benchmarks = require('beautify-benchmark');
+const { configure, shallow } = require('enzyme');
+const Adapter = require('enzyme-adapter-react-16');
 const moment = require('moment');
 const chalk = require('chalk');
 const momentMemoize = require('../../src/index');
 const setup = require('../../setup');
 
-function DisplayDateComponent({ from, to }) {
-  const type = types[momentType];
+configure({ adapter: new Adapter() });
 
+function DisplayDateComponent({ from, to }) {
   return (
     <div>
       {from} - {to}
@@ -20,8 +23,6 @@ function DisplayDateComponent({ from, to }) {
   setup.testName('App default');
 
   function DisplayDateComponent({ from, to, momentType }) {
-    const type = types[momentType];
-
     return (
       <div>
         {momentType(from).format('LLLL')} - {momentType(to).format('LLLL')}
@@ -45,14 +46,18 @@ function DisplayDateComponent({ from, to }) {
 
   suite
     .add('moment single element', function() {
-      <App from={1318781876406} to={1318781886406} momentType={moment} />;
+      ReactDOM.renderToString(
+        <App from={1318781876406} to={1318781886406} momentType={moment} />,
+      );
     })
     .add('momentMemoize single element', function() {
-      <App
-        from={1318781876406}
-        to={1318781886406}
-        momentType={momentMemoize}
-      />;
+      ReactDOM.renderToString(
+        <App
+          from={1318781876406}
+          to={1318781886406}
+          momentType={momentMemoize}
+        />,
+      );
     })
     // add listeners
     .on('cycle', function(event) {
@@ -86,14 +91,18 @@ function DisplayDateComponent({ from, to }) {
 
   suite
     .add('moment single element', function() {
-      <App from={1318781876406} to={1318781886406} momentType={moment} />;
+      ReactDOM.renderToString(
+        <App from={1318781876406} to={1318781886406} momentType={moment} />,
+      );
     })
     .add('momentMemoize single element', function() {
-      <App
-        from={1318781876406}
-        to={1318781886406}
-        momentType={momentMemoize}
-      />;
+      ReactDOM.renderToString(
+        <App
+          from={1318781876406}
+          to={1318781886406}
+          momentType={momentMemoize}
+        />,
+      );
     })
     // add listeners
     .on('cycle', function(event) {
@@ -124,16 +133,20 @@ function DisplayDateComponent({ from, to }) {
 
   suite
     .add('moment single element', function() {
-      <App
-        from={moment(1318781876406).format('LLLL')}
-        to={moment(1318781886406).format('LLLL')}
-      />;
+      ReactDOM.renderToString(
+        <App
+          from={moment(1318781876406).format('LLLL')}
+          to={moment(1318781886406).format('LLLL')}
+        />,
+      );
     })
     .add('momentMemoize single element', function() {
-      <App
-        from={momentMemoize(1318781876406).format('LLLL')}
-        to={momentMemoize(1318781886406).format('LLLL')}
-      />;
+      ReactDOM.renderToString(
+        <App
+          from={momentMemoize(1318781876406).format('LLLL')}
+          to={momentMemoize(1318781886406).format('LLLL')}
+        />,
+      );
     })
     // add listeners
     .on('cycle', function(event) {
